@@ -380,7 +380,7 @@ end)
 
 local status = module.checkAlt()
 if status > 4 then
-    Player:Kick('Alt Account [' .. status .. ']')
+game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
     -- print('alt-' .. status)
     -- module.randomGameMode()
 end
@@ -452,3 +452,4 @@ while task.wait(0.3) do
         end
     end
 end
+

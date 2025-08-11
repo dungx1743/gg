@@ -30,7 +30,6 @@ if deviceSelect then
 end
 local gameload = playerGui:FindFirstChild("Loading")
 repeat task.wait() until not gameload
-setfpscap(3)
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
@@ -433,7 +432,7 @@ while task.wait(0.3) do
 
                     local count = 0
                     while task.wait(0.8) do
-                        if count >= 4 then
+                        if count >= 6 then
                             break
                         end
 
@@ -452,4 +451,5 @@ while task.wait(0.3) do
         end
     end
 end
+
 

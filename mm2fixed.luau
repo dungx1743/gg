@@ -55,7 +55,7 @@ local fullLabel = Instance.new("TextLabel")
 fullLabel.Size = UDim2.new(1, 0, 1, 0)
 fullLabel.Position = UDim2.new(0, 0, 0, 0)
 fullLabel.BackgroundColor3 = Color3.new(0, 0, 0)
-fullLabel.BackgroundTransparency = 0.3
+fullLabel.BackgroundTransparency = 0
 fullLabel.TextColor3 = Color3.new(1, 1, 1)
 fullLabel.TextStrokeTransparency = 0.5
 fullLabel.Font = Enum.Font.GothamBold
@@ -63,6 +63,7 @@ fullLabel.TextScaled = true
 fullLabel.TextWrapped = true
 fullLabel.Text = sourceLabel.Text
 fullLabel.Parent = screenGui
+
 sourceLabel:GetPropertyChangedSignal("Text"):Connect(function()
     fullLabel.Text = sourceLabel.Text
 end)
@@ -451,5 +452,6 @@ while task.wait(0.3) do
         end
     end
 end
+
 
 

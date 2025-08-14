@@ -30,6 +30,16 @@ if deviceSelect then
 end
 local gameload = playerGui:FindFirstChild("Loading")
 repeat task.wait() until not gameload
+task.spawn(function()
+    while true do
+        local args = {
+            [1] = 24
+        }
+        game:GetService("ReplicatedStorage").Remotes.Events.Generic.BuyTiers:FireServer(unpack(args))
+        game:GetService("ReplicatedStorage").Remotes.Events.Generic.BuyFinalReward:FireServer()
+        wait(10)
+    end
+end)
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
@@ -452,6 +462,7 @@ while task.wait(0.3) do
         end
     end
 end
+
 
 
 

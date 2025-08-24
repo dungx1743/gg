@@ -1,0 +1,7 @@
+repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+getgenv().Setting =  {
+    ["UUID"] = "86caf1a3-476c-4cf1-a070-beefadb78e97", -- #bot-commands | use /get-uuid
+    ["Discord ID"] = "900277968977408010",
+    ["Device Name"] = "ROKID_01" -- note | can change it to anything u want!!
+}
+loadstring(game:HttpGet("https://cdn.shouko.dev/RokidManager/neyoshiiuem/main/trackstat.lua"))()

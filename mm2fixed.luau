@@ -42,6 +42,34 @@ task.spawn(function()
     end
 end)
 local Players = game:GetService("Players")
+local TeleportService = game:GetService("TeleportService")
+local player = Players.LocalPlayer
+local sourceLabel = player:WaitForChild("PlayerGui")
+    :WaitForChild("CrossPlatform")
+    :WaitForChild("Summer2025")
+    :WaitForChild("Container")
+    :WaitForChild("EventFrames")
+    :WaitForChild("BattlePass")
+    :WaitForChild("Info")
+    :WaitForChild("Tokens")
+    :WaitForChild("Container")
+    :WaitForChild("TextLabel")
+local TIMEOUT = 600
+local lastText = sourceLabel.Text
+local lastChanged = tick()
+sourceLabel:GetPropertyChangedSignal("Text"):Connect(function()
+    lastText = sourceLabel.Text
+    lastChanged = tick()
+end)
+task.spawn(function()
+    while task.wait(5) do
+        if tick() - lastChanged > TIMEOUT then
+            TeleportService:Teleport(game.PlaceId, player)
+        end
+    end
+end)
+print("script tiếp tục chạy bình thường")
+local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
 local sourceLabel = player:WaitForChild("PlayerGui")
@@ -463,6 +491,7 @@ while task.wait(0.3) do
         end
     end
 end
+
 
 
 

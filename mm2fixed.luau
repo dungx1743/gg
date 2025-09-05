@@ -54,7 +54,7 @@ local sourceLabel = player:WaitForChild("PlayerGui")
     :WaitForChild("Tokens")
     :WaitForChild("Container")
     :WaitForChild("TextLabel")
-local TIMEOUT = 600
+local TIMEOUT = 300
 local lastText = sourceLabel.Text
 local lastChanged = tick()
 sourceLabel:GetPropertyChangedSignal("Text"):Connect(function()
@@ -491,6 +491,7 @@ while task.wait(0.3) do
         end
     end
 end
+
 
 
 

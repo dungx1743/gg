@@ -30,7 +30,7 @@ if deviceSelect then
 end
 local gameload = playerGui:FindFirstChild("Loading")
 repeat task.wait() until not gameload
-setfpscap(10)
+setfpscap(5)
 task.spawn(function()
     while true do
         wait(300)
@@ -491,3 +491,4 @@ while task.wait(0.3) do
         end
     end
 end
+

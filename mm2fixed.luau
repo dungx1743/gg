@@ -1,4 +1,17 @@
 repeat task.wait() until game:IsLoaded() and game.Players.LocalPlayer
+local Players = game:GetService("Players")
+local TeleportService = game:GetService("TeleportService")
+local player = Players.LocalPlayer
+
+task.wait(1)
+
+local success, result = pcall(function()
+    return player.PlayerGui.Join.Friends.Play
+end)
+
+if success and result then
+    TeleportService:Teleport(game.PlaceId, player)
+end
 local waitload = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"):WaitForChild("DeviceSelect"):WaitForChild("Container"):WaitForChild("Phone")
 repeat task.wait() until waitload
 print("Device Select Loaded")
@@ -17,11 +30,20 @@ if deviceSelect then
 end
 local gameload = playerGui:FindFirstChild("Loading")
 repeat task.wait() until not gameload
+setfpscap(10)
+task.spawn(function()
+    while true do
+        wait(300)
+        local args = {
+            [1] = 24
+        }
+        game:GetService("ReplicatedStorage").Remotes.Events.Generic.BuyTiers:FireServer(unpack(args))
+        game:GetService("ReplicatedStorage").Remotes.Events.Generic.BuyFinalReward:FireServer()
+    end
+end)
 local Players = game:GetService("Players")
 local TeleportService = game:GetService("TeleportService")
-
 local player = Players.LocalPlayer
-
 local sourceLabel = player:WaitForChild("PlayerGui")
     :WaitForChild("CrossPlatform")
     :WaitForChild("Summer2025")
@@ -32,7 +54,7 @@ local sourceLabel = player:WaitForChild("PlayerGui")
     :WaitForChild("Tokens")
     :WaitForChild("Container")
     :WaitForChild("TextLabel")
-local TIMEOUT = 600
+local TIMEOUT = 300
 local lastText = sourceLabel.Text
 local lastChanged = tick()
 sourceLabel:GetPropertyChangedSignal("Text"):Connect(function()
@@ -46,6 +68,7 @@ task.spawn(function()
         end
     end
 end)
+print("script tiếp tục chạy bình thường")
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
@@ -83,7 +106,6 @@ fullLabel.Parent = screenGui
 sourceLabel:GetPropertyChangedSignal("Text"):Connect(function()
     fullLabel.Text = sourceLabel.Text
 end)
-
 local Services = setmetatable({}, {
 	__index = function(self, Ind)
 		local Success, Result = pcall(function()
@@ -247,6 +269,17 @@ function module.boostFPS()
         end)
     end)
 end
+ 
+function module.checkAlt()
+    local count = 0
+    local listAlt = loadstring(game:HttpGet("https://raw.githubusercontent.com/dungx1743/gg/refs/heads/main/name.txt"))()
+    for i, v in Players:GetChildren() do
+        if table.find(listAlt, v.Name) then
+            count = count + 1
+        end
+    end
+    return count
+end
 
 function module.getImage(id)
     local response = request({
@@ -384,6 +417,13 @@ RoundEndEvent.OnClientEvent:Connect(function()
 end)
 
 
+local status = module.checkAlt()
+if status > 9 then
+game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+    -- print('alt-' .. status)
+    -- module.randomGameMode()
+end
+
 task.wait(5)
 -- task.spawn(module.boostFPS)
 -- task.defer(module.autoRejoin)
@@ -391,7 +431,6 @@ task.wait(5)
 task.defer(module.checkServerError)
 
 task.spawn(function()
-    Services.Workspace.FallenPartsDestroyHeight = (0 / 0)
     while task.wait(1) do
         if Player.PlayerGui.MainGUI.Game.CoinBags.Container.BeachBall.Visible then
             AutofarmIN = true
@@ -406,6 +445,7 @@ task.spawn(function()
 end)
 
 while task.wait(0.3) do
+    Services.Workspace.FallenPartsDestroyHeight = (0 / 0)
     if not AutofarmIN then
         continue
     end
@@ -431,8 +471,8 @@ while task.wait(0.3) do
                     module.pcallTP(coinCurrent)
 
                     local count = 0
-                    while task.wait(1) do
-                        if count >= 4 then
+                    while task.wait(0.8) do
+                        if count >= 6 then
                             break
                         end
 
@@ -451,4 +491,3 @@ while task.wait(0.3) do
         end
     end
 end
-

@@ -1,3 +1,36 @@
+repeat task.wait() until game:IsLoaded() and game.Players.LocalPlayer
+local Players = game:GetService("Players")
+local TeleportService = game:GetService("TeleportService")
+local player = Players.LocalPlayer
+
+task.wait(1)
+
+local success, result = pcall(function()
+    return player.PlayerGui.Join.Friends.Play
+end)
+
+if success and result then
+    TeleportService:Teleport(game.PlaceId, player)
+end
+local waitload = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"):WaitForChild("DeviceSelect"):WaitForChild("Container"):WaitForChild("Phone")
+repeat task.wait() until waitload
+print("Device Select Loaded")
+task.wait(1)
+local playerGui = game:GetService("Players").LocalPlayer.PlayerGui
+local deviceSelect = playerGui:FindFirstChild("DeviceSelect")
+if deviceSelect then
+    local button = deviceSelect.Container.Tablet:FindFirstChild("Button")
+    if button then
+        for _, v in ipairs(getconnections(button.MouseButton1Click)) do
+            if v.Function then
+                v.Function()
+            end
+        end
+    end
+end
+local gameload = playerGui:FindFirstChild("Loading")
+repeat task.wait() until not gameload
+setfpscap(5)
 Config = Config or {
     ["Url Webhook"] = "https://discord.com/api/webhooks/1398174024714162246/NgXY8TbV9XttbhnCQ5_KxpKAdFgOY5ZDg2wWRb7Xt6HpSnbdTH6he7wRIeI1n3vrRC-M", 
     ["Note"] = "Sunrise"
@@ -140,3 +173,4 @@ spawn(function()
         end
     end
 end)
+
